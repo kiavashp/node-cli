@@ -20,8 +20,8 @@ function Interface(options) {
     var input;
     var output;
 
-	if (!(_this instanceof CLI)) {
-		return new CLI(options);
+	if (!(_this instanceof Interface)) {
+		return new Interface(options);
 	}
 
     options = options || {};
