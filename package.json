@@ -1,6 +1,7 @@
 {
   "name": "cli",
   "main": "cli.js",
+  "version": "0.1.0",
   "dependencies": {
     "yargs": "3.31.0"
   }
