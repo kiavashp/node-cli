@@ -87,10 +87,10 @@ Interface.prototype.commands = function commands(commands) {
             }
 
             if (commands.indexOf(command) !== -1 && typeof Cmds[command] === 'function') {
-                cancelPrompt = Cmds[command](yargArgs);
+                cancelPrompt = Cmds[command](yargArgs, line);
             } else if (command){
                 if (typeof _this.internals.onMissingCommand === 'function') {
-                    _this.internals.onMissingCommand(command, yargArgs);
+                    _this.internals.onMissingCommand(command, yargArgs, line);
                 } else {
                     console.log('command not found: '+ command);
                 }
