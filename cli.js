@@ -136,4 +136,7 @@ proxyMethod(Interface, readline, 'createInterface');
 proxyMethod(Interface, readline, 'cursorTo');
 proxyMethod(Interface, readline, 'moveCursor');
 
+Interface.Interface = Interface;
+Interface.readline = readline;
+
 module.exports = Interface;
