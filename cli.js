@@ -71,12 +71,13 @@ Interface.prototype.commands = function commands(commands) {
     if (!_this.internals.commands) {
         _this.internals.commands = commands;
         _this.readline.on('line', function (line) {
-            var args = line.trim().split(' ');
+            var args = line.trimLeft().split(' ');
             var command = args.shift();
+            var cleanArgs = args.map(function (s) { return s.trim() });
             var Cmds = _this.internals.commands;
             var commands = Object.getOwnPropertyNames(Cmds);
             var cancelPrompt;
-            var yargArgs = yargs(args)
+            var yargArgs = yargs(cleanArgs)
                 .exitProcess(false);
 
             if (!_this.internals.caseSensative) {
@@ -87,10 +88,10 @@ Interface.prototype.commands = function commands(commands) {
             }
 
             if (commands.indexOf(command) !== -1 && typeof Cmds[command] === 'function') {
-                cancelPrompt = Cmds[command](yargArgs, line);
+                cancelPrompt = Cmds[command](yargArgs, args.join(' '));
             } else if (command){
                 if (typeof _this.internals.onMissingCommand === 'function') {
-                    _this.internals.onMissingCommand(command, yargArgs, line);
+                    _this.internals.onMissingCommand(command, yargArgs, args.join(' '));
                 } else {
                     console.log('command not found: '+ command);
                 }
